@@ -194,17 +194,37 @@ months:
     observed: to_monday_if_weekend(date)
   12:
   - name: Christmas Day
-    regions: [ca]
+    regions: [ca_on]
+    mday: 25
+    year_ranges:
+      until: 2020
+    observed: to_weekday_if_weekend(date)
+  - name: Christmas Day
+    regions: [ca_on]
+    mday: 25
+    observed: to_monday_if_weekend(date)
+    year_ranges:
+      from: 2020
+  - name: Christmas Day
+    regions: [ca_ab, ca_bc, ca_mb, ca_nb, ca_nl, ca_nt, ca_ns, ca_nu, ca_pe, ca_qc, ca_sk, ca_yt]
     mday: 25
     observed: to_weekday_if_weekend(date)
   - name: Boxing Day
     regions: [ca_on]
     mday: 26
+    year_ranges:
+      until: 2020
+    observed: to_monday_if_weekend(date)
+  - name: Boxing Day
+    regions: [ca_on]
+    mday: 26
+    year_ranges:
+      from: 2020
     observed: to_weekday_if_boxing_weekend(date)
   - name: Boxing Day
-    regions: [ca_ab, ca_bc, ca_mb, ca_nb, ca_nl, ca_nt, ca_ns, ca_nu, ca_pe, ca_sk, ca_yt]
+    regions: [ca_ab, ca_bc, ca_mb, ca_nb, ca_nl, ca_nt, ca_ns, ca_nu, ca_pe, ca_qc, ca_sk, ca_yt]
     mday: 26
-    observed: to_weekday_if_boxing_weekend(date)
+    observed: to_monday_if_weekend(date)
     type: informal
 
 methods:
@@ -259,7 +279,7 @@ tests:
       name: "Labour Day"
   - given:
       date: '2008-12-25'
-      regions: ["ca"]
+      regions: ["ca_on"]
       options: ["informal"]
     expect:
       name: "Christmas Day"
@@ -776,17 +796,17 @@ tests:
   # Christmas Day
   - given:
       date: '2010-12-25'
-      regions: ["ca"]
+      regions: ["ca_on"]
     expect:
       name: "Christmas Day"
   - given:
       date: '2018-12-25'
-      regions: ["ca"]
+      regions: ["ca_on"]
     expect:
       name: "Christmas Day"
   - given:
       date: '2022-12-25'
-      regions: ["ca"]
+      regions: ["ca_on"]
     expect:
       name: "Christmas Day"
   - given:
@@ -799,37 +819,43 @@ tests:
   # Christmas Day observed date
   - given:
       date: '2010-12-24'
-      regions: ["ca"]
+      regions: ["ca_on"]
       options: ["observed"]
     expect:
       name: "Christmas Day"
   - given:
       date: '2012-12-25'
-      regions: ["ca"]
+      regions: ["ca_on"]
       options: ["observed"]
     expect:
       name: "Christmas Day"
   - given:
       date: '2016-12-26'
-      regions: ["ca"]
+      regions: ["ca_on"]
       options: ["observed"]
     expect:
       name: "Christmas Day"
   - given:
       date: '2021-12-24'
-      regions: ["ca"]
+      regions: ["ca_ab", "ca_bc", "ca_mb", "ca_nb", "ca_nl", "ca_nt", "ca_ns", "ca_nu", "ca_pe", "ca_qc", "ca_sk", "ca_yt"]
       options: ["observed"]
     expect:
       name: "Christmas Day"
   - given:
+      date: '2021-12-27'
+      regions: [ "ca_on" ]
+      options: [ "observed" ]
+    expect:
+      name: "Christmas Day"
+  - given:
       date: '2022-12-26'
-      regions: ["ca"]
+      regions: ["ca_on"]
       options: ["observed"]
     expect:
       name: "Christmas Day"
 
   - given:
-      date: ['2010-12-28', '2012-12-26', '2015-12-28', '2016-12-27']
+      date: ['2010-12-27', '2012-12-26', '2015-12-28']
       regions: ["ca_on"]
       options: ["observed"]
     expect:
