@@ -1,6 +1,6 @@
 # How to contribute
 
-In this repository we have all of the definitions that are used in holiday calcuations. We rely on users around the world to help keep our definitions accurate and up to date.
+In this repository we have all of the definitions that are used in holiday calculations. We rely on users around the world to help keep our definitions accurate and up to date.
 
 ## Code of Conduct
 
@@ -16,6 +16,8 @@ Here are the steps to take once you have a good idea on what you want to change:
 * Edit desired definition YAML file(s). If you are adding a new region be sure to update `index.yaml` as well
 * Run `make validate` to ensure that all updates match our definition format
 * Open a PR with your changes
+
+The CI pipeline will automatically validate your definitions and run the downstream `holidays` Ruby project against them to catch any breakage before merging.
 
 Including documentation with your updates is very much appreciated. A simple Wikipedia entry or government link in the comments alongside your changes would be perfect.
 
